@@ -1,0 +1,9 @@
+api:
+  url: https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict?district_id=395&date=09-05-2021
+
+jobs:
+  cron: '*/15 * * * * *'
+
+twilio:
+  accountId: AC49c3fffd77ac2c66b75bac6a9444941f
+  authToken: e10e0e882be8bd98c73747d6139f358d
