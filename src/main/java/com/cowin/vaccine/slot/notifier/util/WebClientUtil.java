@@ -17,6 +17,7 @@ import reactor.core.publisher.*;
 @Component
 public class WebClientUtil {
     @Autowired  private ApiProperties apiProperties;
+    @Autowired private CowinPortalProperties cowinPortalProperties;
     private HttpHeaders headers;
     private URI uri;
 
@@ -25,8 +26,7 @@ public class WebClientUtil {
         uri = new URI(apiProperties.getUrl());
         headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
- //   headers.put("authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJiZjliNDk1OC02MmYxLTQ4MDctOGI1YS03ZGU4YzdkNjc2NDMiLCJ1c2VyX2lkIjoiYmY5YjQ5NTgtNjJmMS00ODA3LThiNWEtN2RlOGM3ZDY3NjQzIiwidXNlcl90eXBlIjoiQkVORUZJQ0lBUlkiLCJtb2JpbGVfbnVtYmVyIjo5MTc1NDc5ODcwLCJiZW5lZmljaWFyeV9yZWZlcmVuY2VfaWQiOjQ4NzgxNzQyOTY5NDUwLCJzZWNyZXRfa2V5IjoiYjVjYWIxNjctNzk3Ny00ZGYxLTgwMjctYTYzYWExNDRmMDRlIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvOTAuMC40NDMwLjkzIFNhZmFyaS81MzcuMzYiLCJkYXRlX21vZGlmaWVkIjoiMjAyMS0wNS0wOVQxMTo0NToyNC40MTlaIiwiaWF0IjoxNjIwNTYwNzI0LCJleHAiOjE2MjA1NjE2MjR9.fqnE6QAs1KxTbrlxnQKkdl1L44YR-t0KRSQLKHN1JFY");
-        headers.setBearerAuth("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJiZjliNDk1OC02MmYxLTQ4MDctOGI1YS03ZGU4YzdkNjc2NDMiLCJ1c2VyX2lkIjoiYmY5YjQ5NTgtNjJmMS00ODA3LThiNWEtN2RlOGM3ZDY3NjQzIiwidXNlcl90eXBlIjoiQkVORUZJQ0lBUlkiLCJtb2JpbGVfbnVtYmVyIjo5MTc1NDc5ODcwLCJiZW5lZmljaWFyeV9yZWZlcmVuY2VfaWQiOjQ4NzgxNzQyOTY5NDUwLCJzZWNyZXRfa2V5IjoiYjVjYWIxNjctNzk3Ny00ZGYxLTgwMjctYTYzYWExNDRmMDRlIiwidWEiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvOTAuMC40NDMwLjkzIFNhZmFyaS81MzcuMzYiLCJkYXRlX21vZGlmaWVkIjoiMjAyMS0wNS0wOVQxMTo0NToyNC40MTlaIiwiaWF0IjoxNjIwNTYwNzI0LCJleHAiOjE2MjA1NjE2MjR9.fqnE6QAs1KxTbrlxnQKkdl1L44YR-t0KRSQLKHN1JFY");
+        headers.setBearerAuth(cowinPortalProperties.getToken());
     }
     public WebClient.ResponseSpec getAndRetrieve() { return WebClient.builder().build()
                 .get()
